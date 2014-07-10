@@ -175,7 +175,7 @@ function rps_main_options()
              212 "Mednafen PCE Fast LibretroCore " OFF \
              300 "Update APT packages            " OFF \
              301 "Package Repository             " OFF \
-             302 "SDL 2.0.1                      " OFF \
+             302 "SDL 2.0.1                      " ON \
              303 "EmulationStation               " ON \
              304 "EmulationStation Theme Simple  " ON \
              305 "Video mode script 'runcommand' " OFF \
