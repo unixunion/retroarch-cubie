@@ -132,48 +132,48 @@ function rps_main_options()
 {
     cmd=(dialog --separate-output --backtitle "PetRockBlock.com - RetroPie Setup. Installation folder: $rootdir for user $user" --checklist "Select options with 'space' and arrow keys. The default selection installs a complete set of packages and configures basic settings. The entries marked as (C) denote the configuration steps. For an update of an installation you would deselect these to keep all your settings untouched." 22 76 16)
     options=(100 "RetroArch                      " ON \
-             101 "AdvMame                        " ON \
-             102 "Amiga emulator UAE4All         " ON \
-             103 "Atari 800 emulator             " ON \
-             104 "Armstrad CPC emulator          " ON \
-             105 "DOS Emulator Dosbox            " ON \
-             106 "Atari2600 emulator STELLA      " ON \
-             107 "Macintosh emulator             " ON \
-             108 "C64 emulator VICE              " ON \
-             109 "C64 ROMs                       " ON \
-             110 "Duke3D Port                    " ON \
-             111 "GameBoy Advance emulator       " ON \
-             112 "NeoGeo emulator GnGeoPi        " ON \
-             113 "Atari emulator Hatari          " ON \
-             114 "MAME emulator MAME4All-Pi      " ON \
-             115 "Gamegear emulator Osmose       " ON \
-             116 "Intellivision emulator         " ON \
-             117 "Apple 2 emulator Linapple      " ON \
-             118 "N64 emulator MUPEN64Plus-RPi   " ON \
+             101 "AdvMame                        " OFF \
+             102 "Amiga emulator UAE4All         " OFF \
+             103 "Atari 800 emulator             " OFF \
+             104 "Armstrad CPC emulator          " OFF \
+             105 "DOS Emulator Dosbox            " OFF \
+             106 "Atari2600 emulator STELLA      " OFF \
+             107 "Macintosh emulator             " OFF \
+             108 "C64 emulator VICE              " OFF \
+             109 "C64 ROMs                       " OFF \
+             110 "Duke3D Port                    " OFF \
+             111 "GameBoy Advance emulator       " OFF \
+             112 "NeoGeo emulator GnGeoPi        " OFF \
+             113 "Atari emulator Hatari          " OFF \
+             114 "MAME emulator MAME4All-Pi      " OFF \
+             115 "Gamegear emulator Osmose       " OFF \
+             116 "Intellivision emulator         " OFF \
+             117 "Apple 2 emulator Linapple      " OFF \
+             118 "N64 emulator MUPEN64Plus-RPi   " OFF \
              119 "SNES emulator SNES9X-RPi       " ON \
-             120 "FBA emulator PiFBA             " ON \
-             121 "SNES emulator PiSNES           " ON \
-             122 "DOS Emulator rpix86            " ON \
-             123 "ScummVM                        " ON \
-             124 "ZMachine                       " ON \
-             125 "ZXSpectrum emulator Fuse       " ON \
-             126 "ZXSpectrum emulator FBZX       " ON \
-             127 "MSX emulator OpenMSX           " ON \
-             128 "DOS emulator FastDosbox        " ON \
+             120 "FBA emulator PiFBA             " OFF \
+             121 "SNES emulator PiSNES           " OFF \
+             122 "DOS Emulator rpix86            " OFF \
+             123 "ScummVM                        " OFF \
+             124 "ZMachine                       " OFF \
+             125 "ZXSpectrum emulator Fuse       " OFF \
+             126 "ZXSpectrum emulator FBZX       " OFF \
+             127 "MSX emulator OpenMSX           " OFF \
+             128 "DOS emulator FastDosbox        " OFF \
              200 "SNES LibretroCore PocketSNES   " ON \
-             201 "Genesis LibretroCore Picodrive " ON \
-             202 "Atari 2600 LibretroCore Stella " ON \
-             203 "Cave Story LibretroCore        " ON \
-             204 "Doom LibretroCore              " ON \
-             205 "Gameboy Color LibretroCore     " ON \
-             206 "MAME LibretroCore              " ON \
-             207 "FBA LibretroCore               " ON \
+             201 "Genesis LibretroCore Picodrive " OFF \
+             202 "Atari 2600 LibretroCore Stella " OFF \
+             203 "Cave Story LibretroCore        " OFF \
+             204 "Doom LibretroCore              " OFF \
+             205 "Gameboy Color LibretroCore     " OFF \
+             206 "MAME LibretroCore              " OFF \
+             207 "FBA LibretroCore               " OFF \
              208 "NES LibretroCore fceu-next     " ON \
-             209 "Genesis/Megadrive LibretroCore " ON \
-             210 "TurboGrafx 16 LibretroCore     " ON \
-             211 "Playstation 1 LibretroCore     " ON \
-             212 "Mednafen PCE Fast LibretroCore " ON \
-             300 "Update APT packages            " ON \
+             209 "Genesis/Megadrive LibretroCore " OFF \
+             210 "TurboGrafx 16 LibretroCore     " OFF \
+             211 "Playstation 1 LibretroCore     " OFF \
+             212 "Mednafen PCE Fast LibretroCore " OFF \
+             300 "Update APT packages            " OFF \
              301 "Package Repository             " ON \
              302 "SDL 2.0.1                      " ON \
              303 "EmulationStation               " ON \

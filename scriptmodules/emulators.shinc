@@ -40,8 +40,8 @@ function sources_retroarch() {
 function build_retroarch() {
     printMsg "Building RetroArch"
     pushd "$rootdir/emulators/RetroArch"
-    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard
-    make clean
+    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard #--disable-dynamic
+    #make clean
     make
     popd
 }
@@ -371,7 +371,7 @@ function build_basilisk() {
     cd BasiliskII/src/Unix
     ./autogen.sh
     ./configure --prefix="$rootdir/emulators/basiliskii/installdir" --enable-sdl-video --enable-sdl-audio --disable-vosf --disable-jit-compiler
-    make clean
+    #make clean
     make
     popd
 }
@@ -500,7 +500,7 @@ function build_gpsp() {
     printMsg "Building GPSP"
     pushd "$rootdir/emulators/gpsp"
     cd raspberrypi
-    make clean  
+    #make clean  
     make
     cp "$rootdir/emulators/gpsp/game_config.txt" "$rootdir/emulators/gpsp/raspberrypi/"
     # TODO copy gpsp into /opt/retropie/emulators/gpsp directory
@@ -566,7 +566,7 @@ function sources_mame4all() {
 function build_mame4all() {
     printMsg "Builing Mame4All-Pi"
     pushd "$rootdir/emulators/mame4all-pi"
-    make clean
+    #make clean
     make
     if [[ ! -f "$rootdir/emulators/mame4all-pi/mame" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully mame4all-pi emulator."
@@ -597,7 +597,7 @@ function sources_osmose() {
 function build_osmose() {
     printMsg "Building Osmose"
     pushd "$rootdir/emulators/osmose-0.8.1+rpi20121122/"
-    make clean
+    #make clean
     make
     if [[ ! -f "$rootdir/emulators/osmose-0.8.1+rpi20121122/osmose" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully compile OsmMose."
@@ -630,7 +630,7 @@ function build_jzint() {
 _EOF_
 
     patch -e Makefile pi.diff
-    make clean
+    #make clean
     make
     if [[ ! -f "$rootdir/emulators/jzintv-1.0-beta4/bin/jzintv" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully compile jzintv."
@@ -721,14 +721,14 @@ function sources_snes9x() {
     if [[ -d "$rootdir/emulators/snes9x-rpi" ]]; then
         rm -rf "$rootdir/emulators/snes9x-rpi"
     fi        
-    gitPullOrClone "$rootdir/emulators/snes9x-rpi" https://github.com/chep/snes9x-rpi.git
+    gitPullOrClone "$rootdir/emulators/snes9x-rpi" https://github.com/unixunion/snes9x-rpi.git
 }
 
 function build_snes9x() {
     printMsg "Building SNES9X-RPi emulator"    
 
     pushd "$rootdir/emulators/snes9x-rpi"
-    make clean
+    #make clean
     make
     if [[ ! -f "$rootdir/emulators/snes9x-rpi/snes9x" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully compile SNES9X."
@@ -757,7 +757,7 @@ function build_pifba() {
     printMsg "Building PiFBA emulator"    
     pushd "$rootdir/emulators/pifba"
     mkdir ".obj"
-    make clean
+    #make clean
     make
     if [[ ! -d "$rootdir/emulators/pifba/" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully compile PiFBA."
@@ -793,14 +793,14 @@ function sources_pisnes() {
     if [[ -d "$rootdir/emulators/pisnes" ]]; then
         rm -rf "$rootdir/emulators/pisnes"
     fi        
-    gitPullOrClone "$rootdir/emulators/pisnes" https://code.google.com/p/pisnes/
+    gitPullOrClone "$rootdir/emulators/pisnes" https://github.com/unixunion/pisnes.git
 }
 
 function build_pisnes() {
     printMsg "Building PiSNES emulator"    
     pushd "$rootdir/emulators/pisnes"
     sed -i -e "s|-lglib-2.0|-lglib-2.0 -lbcm_host|g" Makefile
-    make clean
+    #make clean
     make
     if [[ ! -f "$rootdir/emulators/pisnes/snes9x" ]]; then
         __ERRMSGS="$__ERRMSGS Could not successfully compile PiSNES."
