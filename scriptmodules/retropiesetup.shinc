@@ -131,7 +131,7 @@ function rps_main_updatescript()
 function rps_main_options()
 {
     cmd=(dialog --separate-output --backtitle "PetRockBlock.com - RetroPie Setup. Installation folder: $rootdir for user $user" --checklist "Select options with 'space' and arrow keys. The default selection installs a complete set of packages and configures basic settings. The entries marked as (C) denote the configuration steps. For an update of an installation you would deselect these to keep all your settings untouched." 22 76 16)
-    options=(100 "RetroArch                      " ON \
+    options=(100 "RetroArch                      " OFF \
              101 "AdvMame                        " OFF \
              102 "Amiga emulator UAE4All         " OFF \
              103 "Atari 800 emulator             " OFF \
@@ -150,7 +150,7 @@ function rps_main_options()
              116 "Intellivision emulator         " OFF \
              117 "Apple 2 emulator Linapple      " OFF \
              118 "N64 emulator MUPEN64Plus-RPi   " OFF \
-             119 "SNES emulator SNES9X-RPi       " ON \
+             119 "SNES emulator SNES9X-RPi       " OFF \
              120 "FBA emulator PiFBA             " OFF \
              121 "SNES emulator PiSNES           " OFF \
              122 "DOS Emulator rpix86            " OFF \
@@ -160,7 +160,7 @@ function rps_main_options()
              126 "ZXSpectrum emulator FBZX       " OFF \
              127 "MSX emulator OpenMSX           " OFF \
              128 "DOS emulator FastDosbox        " OFF \
-             200 "SNES LibretroCore PocketSNES   " ON \
+             200 "SNES LibretroCore PocketSNES   " OFF \
              201 "Genesis LibretroCore Picodrive " OFF \
              202 "Atari 2600 LibretroCore Stella " OFF \
              203 "Cave Story LibretroCore        " OFF \
@@ -168,23 +168,23 @@ function rps_main_options()
              205 "Gameboy Color LibretroCore     " OFF \
              206 "MAME LibretroCore              " OFF \
              207 "FBA LibretroCore               " OFF \
-             208 "NES LibretroCore fceu-next     " ON \
+             208 "NES LibretroCore fceu-next     " OFF \
              209 "Genesis/Megadrive LibretroCore " OFF \
              210 "TurboGrafx 16 LibretroCore     " OFF \
              211 "Playstation 1 LibretroCore     " OFF \
              212 "Mednafen PCE Fast LibretroCore " OFF \
              300 "Update APT packages            " OFF \
-             301 "Package Repository             " ON \
-             302 "SDL 2.0.1                      " ON \
+             301 "Package Repository             " OFF \
+             302 "SDL 2.0.1                      " OFF \
              303 "EmulationStation               " ON \
              304 "EmulationStation Theme Simple  " ON \
-             305 "Video mode script 'runcommand' " ON \
-             308 "RetroArch-AutoConfigs          " ON \
-             309 "Bash Welcome Tweak             " ON \
-             315 "Modules UInput, Joydev, ALSA   " ON \
-             316 "Set avoid_safe_mode            " ON \
-             317 "Disable system timeouts        " ON \
-             318 "Handle APT packages            " ON \
+             305 "Video mode script 'runcommand' " OFF \
+             308 "RetroArch-AutoConfigs          " OFF \
+             309 "Bash Welcome Tweak             " OFF \
+             315 "Modules UInput, Joydev, ALSA   " OFF \
+             316 "Set avoid_safe_mode            " OFF \
+             317 "Disable system timeouts        " OFF \
+             318 "Handle APT packages            " OFF \
              323 "Install SDL 2.0.1 binaries     " OFF )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
     clear
