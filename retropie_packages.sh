@@ -54,7 +54,7 @@ __INFMSGS=""
 __doReboot=0
 
 #__default_cflags="-O2 -pipe -march=armv7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mfloat-abi=hard -ffast-math -Ofast"
-__default_cflags="-O2 -pipe -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -mfloat-abi=hard -ffast-math -Ofast"
+__default_cflags="-O2 -pipe -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -ffast-math -Ofast"
 __default_asflags=""
 __default_gcc_version="4.7"
 
