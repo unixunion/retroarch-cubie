@@ -131,7 +131,12 @@ function rps_main_updatescript()
 function rps_main_options()
 {
     cmd=(dialog --separate-output --backtitle "PetRockBlock.com - RetroPie Setup. Installation folder: $rootdir for user $user" --checklist "Select options with 'space' and arrow keys. The default selection installs a complete set of packages and configures basic settings. The entries marked as (C) denote the configuration steps. For an update of an installation you would deselect these to keep all your settings untouched." 22 76 16)
-    options=(100 "RetroArch                      " OFF \
+    options=(10  "Build Environment              " ON \
+             20  "libUMP                         " ON \
+             21  "Mali Framebuffer EGL Driver    " ON \
+             22  "Direct Rendering Manager       " ON \
+             302 "SDL 2.0.1                      " ON \
+             100 "RetroArch                      " ON \
              101 "AdvMame                        " OFF \
              102 "Amiga emulator UAE4All         " OFF \
              103 "Atari 800 emulator             " OFF \
@@ -175,7 +180,6 @@ function rps_main_options()
              212 "Mednafen PCE Fast LibretroCore " OFF \
              300 "Update APT packages            " OFF \
              301 "Package Repository             " OFF \
-             302 "SDL 2.0.1                      " ON \
              303 "EmulationStation               " ON \
              304 "EmulationStation Theme Simple  " ON \
              305 "Video mode script 'runcommand' " OFF \
@@ -197,6 +201,10 @@ function rps_main_options()
         for choice in $choices
         do
             case $choice in
+                 10) source $scriptdir/retropie_packages.sh  10 2>&1 | tee >(gzip --stdout >$logfilename) ;;
+                 20) source $scriptdir/retropie_packages.sh  20 2>&1 | tee >(gzip --stdout >$logfilename) ;;
+                 21) source $scriptdir/retropie_packages.sh  21 2>&1 | tee >(gzip --stdout >$logfilename) ;;
+                 22) source $scriptdir/retropie_packages.sh  22 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 100) source $scriptdir/retropie_packages.sh 100 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 101) source $scriptdir/retropie_packages.sh 101 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 102) source $scriptdir/retropie_packages.sh 102 2>&1 | tee >(gzip --stdout >$logfilename) ;;

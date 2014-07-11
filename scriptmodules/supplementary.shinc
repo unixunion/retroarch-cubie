@@ -25,6 +25,63 @@
 #  Many, many thanks go to all people that provide the individual packages!!!
 # 
 
+# 20, LibUMP
+function sources_libump() {
+	printMsg "Getting sources for libump"
+	gitPullOrClone "$rootdir/supplementary/libump" "https://github.com/linux-sunxi/libump.git" || return 1
+	pushd "$rootdir/supplementary/libump" || return 1
+        git pull || return 1
+	popd
+}
+
+function build_libump() {
+        printMsg "Building libump"
+	pushd "$rootdir/supplementary/libump" || return 1
+	autoreconf -i || return 1
+        ./configure || return 1
+	make || return 1
+        make install || return 1
+	popd
+}
+
+# 21, MALI 400 framebuffer driver
+
+function sources_mali400() {
+	printMsg "Getting sources for mali400"
+	gitPullOrClone "$rootdir/supplementary/sunxi-mali" "https://github.com/linux-sunxi/sunxi-mali.git" || return 1
+	pushd "$rootdir/supplementary/sunxi-mali" || return 1
+        git pull || return 1
+	popd
+}
+
+function build_mali400() {
+        printMsg "Building libump"
+	pushd "$rootdir/supplementary/sunxi-mali" || return 1
+        git submodule init
+        git submodule update
+	make config ABI=armhf EGL_TYPE=framebuffer|| return 1
+        make install || return 1
+	popd
+}
+
+# 22, DRM
+function sources_drm() {
+	printMsg "Getting sources for mesa drm"
+	gitPullOrClone "$rootdir/supplementary/drm" "git://anongit.freedesktop.org/mesa/drm" || return 1
+	pushd "$rootdir/supplementary/drm" || return 1
+	popd
+}
+
+function build_drm() {
+	pushd "$rootdir/supplementary/drm" || return 1
+        ./autogen.sh --enable-exynos-experimental-api
+        make
+        make install
+        popd
+}
+
+
+
 # 300, APT Update
 
 function install_APTPackages() {
@@ -60,7 +117,7 @@ _EOF_
 
 function depen_sdl() {
     printMsg "Getting depencies of sdl"
-    apt-get install -y libudev-dev libasound2-dev libdbus-1-dev libraspberrypi0 libraspberrypi-bin libraspberrypi-dev    
+    apt-get install -y libudev-dev libasound2-dev libdbus-1-dev libraspberrypi0 libraspberrypi-bin libraspberrypi-dev libdbus-1-dev
 }
 
 function sources_sdl() {

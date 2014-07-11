@@ -54,7 +54,7 @@ __INFMSGS=""
 __doReboot=0
 
 #__default_cflags="-O2 -pipe -march=armv7 -mfloat-abi=hard -mfpu=neon-vfpv4 -mfloat-abi=hard -ffast-math -Ofast"
-__default_cflags="-O2 -pipe -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=hard -mfpu=neon -ffast-math -Ofast"
+__default_cflags="-O2 -pipe -march=armv7-a -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=hard -mfpu=vfpv3 -ffast-math -Ofast"
 __default_asflags=""
 __default_gcc_version="4.7"
 
@@ -246,6 +246,7 @@ loadConfig "configs/retronetplay.cfg"
 # rp_registerFunction "" "" "" "" "" "" ""
 
 # Emulator components (emulators.shinc)
+rp_registerFunction  "10" "Build Environment              " "depen_build"            ""                        ""                        ""                          ""                           ""
 rp_registerFunction "100" "RetroArch                      " "depen_retroarch"        "sources_retroarch"       "build_retroarch"         "install_retroarch"         "configure_retroarch"        ""
 rp_registerFunction "101" "AdvMame                        " "depen_advmame"          "sources_advmame"         "build_advmame"           "install_advmame"           "configure_advmame"          ""
 rp_registerFunction "102" "Amiga emulator UAE4All         " ""                       "sources_uae4all"         "build_uae4all"           "install_uae4all"           "configure_uae4all"          ""
@@ -292,6 +293,9 @@ rp_registerFunction "211" "Playstation 1 LibretroCore     " ""                  
 rp_registerFunction "212" "Mednafen PCE Fast LibretroCore " ""                       "sources_mednafenpcefast"  "build_mednafenpcefast"  ""                          "configure_mednafenpcefast"  ""
 
 # Supplementary components (supplementary.shinc)
+rp_registerFunction  "20" "LibUMP                         " ""                       "sources_libump"          "build_libump"            ""                          ""                           ""
+rp_registerFunction  "21" "Mali400 FrameBuffer Driver     " ""                       "sources_mali400"         "build_mali400"           ""                          ""                           ""
+rp_registerFunction  "22" "Direct Rendering Manager       " ""                       "sources_drm"             "build_drm"               ""                          ""                           ""
 rp_registerFunction "300" "Update APT packages            " ""                       ""                         ""                       "install_APTPackages"       ""                           ""
 rp_registerFunction "301" "Package Repository             " ""                       ""                         ""                       "install_PackageRepository" ""                           ""
 rp_registerFunction "302" "SDL 2.0.1                      " "depen_sdl"              "sources_sdl"              "build_sdl"              "install_sdl"               ""                           ""

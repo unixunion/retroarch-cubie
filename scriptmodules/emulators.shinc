@@ -23,9 +23,18 @@
 #  Many, many thanks go to all people that provide the individual packages!!!
 # 
 
+
+# build essential stuff
+function depen_build() {
+   printMsg "Getting build environment packages"
+   apt-get install -y pkg-config make bzip2 automake binutils libtool
+}
+
+
 function depen_retroarch() {
     printMsg "Getting depencies of udev/eudev"
-    apt-get install -y libudev-dev libxkbcommon-dev libegl-dev make bzip2 automake libegl1-mesa-dev libudev-dev
+    #apt-get install -y libudev-dev libxkbcommon-dev libegl-dev libegl1-mesa-dev libegl1-mesa-dev libudev-dev libgl1-mesa-dev libasound2-dev
+    apt-get install -y libudev-dev libasound2-dev
     cat > "/etc/udev/rules.d/99-evdev.rules" << _EOF_
 KERNEL=="event*", NAME="input/%k", MODE="666"
 _EOF_
@@ -40,7 +49,7 @@ function sources_retroarch() {
 function build_retroarch() {
     printMsg "Building RetroArch"
     pushd "$rootdir/emulators/RetroArch"
-    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard #--disable-dynamic
+    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard --enable-alsa
     #make clean
     make
     popd
@@ -625,7 +634,7 @@ function build_jzint() {
     mkdir "$rootdir/emulators/jzintv-1.0-beta4/bin"
     cat > "pi.diff" << _EOF_
 65c
- OPT_FLAGS = -O3 -fomit-frame-pointer -fprefetch-loop-arrays -march=armv7-a -mfloat-abi=hard -mfpu=neon
+ OPT_FLAGS = -O3 -fomit-frame-pointer -fprefetch-loop-arrays -march=armv7-a -mfloat-abi=hard -mfpu=vfpv3
 .
 _EOF_
 
