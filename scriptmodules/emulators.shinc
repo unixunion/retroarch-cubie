@@ -49,7 +49,7 @@ function sources_retroarch() {
 function build_retroarch() {
     printMsg "Building RetroArch"
     pushd "$rootdir/emulators/RetroArch"
-    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard --enable-alsa
+    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard --enable-alsa --enable-lima
     #make clean
     make
     popd

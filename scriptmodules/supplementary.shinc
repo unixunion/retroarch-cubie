@@ -77,10 +77,25 @@ function build_drm() {
         ./autogen.sh --enable-exynos-experimental-api
         make
         make install
+        ln -s /usr/local/include/* /usr/include/
         popd
 }
 
+# 23, lima-drm
+function sources_lima_drm() {
+	printMsg "Getting sources for lima drm"
+	gitPullOrClone "$rootdir/supplementary/lima-drm" "https://github.com/tobiasjakobi/lima-drm.git" || return 1
+	pushd "$rootdir/supplementary/lima-drm" || return 1
+	popd
+}
 
+function build_lima_drm() {
+	pushd "$rootdir/supplementary/lima-drm" || return 1
+        make
+        patch -p1 "$rootdir/supplementary/lima-drm/lima/Makefile" lima-drm.patch
+        make install
+	popd
+}
 
 # 300, APT Update
 
