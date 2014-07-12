@@ -38,7 +38,7 @@ function build_libump() {
         printMsg "Building libump"
 	pushd "$rootdir/supplementary/libump" || return 1
 	autoreconf -i || return 1
-        ./configure || return 1
+        ./configure --prefix=/usr || return 1
 	make || return 1
         make install || return 1
 	popd
@@ -67,6 +67,7 @@ function build_mali400() {
 # 22, DRM
 function sources_drm() {
 	printMsg "Getting sources for mesa drm"
+        apt-get install -y libpthread-stubs0 libpthread-stubs0-dev
 	gitPullOrClone "$rootdir/supplementary/drm" "git://anongit.freedesktop.org/mesa/drm" || return 1
 	pushd "$rootdir/supplementary/drm" || return 1
 	popd
@@ -77,25 +78,10 @@ function build_drm() {
         ./autogen.sh --enable-exynos-experimental-api
         make
         make install
-        ln -s /usr/local/include/* /usr/include/
         popd
 }
 
-# 23, lima-drm
-function sources_lima_drm() {
-	printMsg "Getting sources for lima drm"
-	gitPullOrClone "$rootdir/supplementary/lima-drm" "https://github.com/tobiasjakobi/lima-drm.git" || return 1
-	pushd "$rootdir/supplementary/lima-drm" || return 1
-	popd
-}
 
-function build_lima_drm() {
-	pushd "$rootdir/supplementary/lima-drm" || return 1
-        make
-        patch -p1 "$rootdir/supplementary/lima-drm/lima/Makefile" lima-drm.patch
-        make install
-	popd
-}
 
 # 300, APT Update
 
@@ -150,6 +136,7 @@ function sources_sdl() {
 
 function build_sdl() {
     pushd "$rootdir/supplementary/SDL2-2.0.1" || return 1
+    patch -p1 src/video/SDL_video.c <$scriptdir/supplementary/SDL.patch 
     ./configure || return 1
     make || return 1
     popd || return 1
