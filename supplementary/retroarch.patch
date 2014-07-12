@@ -1,0 +1,16 @@
+diff --git a/gfx/lima_gfx.c b/gfx/lima_gfx.c
+index 373f6c5..c22dd22 100644
+--- a/gfx/lima_gfx.c
++++ b/gfx/lima_gfx.c
+@@ -535,8 +535,8 @@ static void lima_render_msg(lima_video_t *vid, const char *msg) {
+     const int max_width  = lima->font_width - base_x;
+     const int max_height = lima->font_height - base_y;
+ 
+-    int glyph_width  = head->width;
+-    int glyph_height = head->height;
++    int glyph_width  = vid->width;
++    int glyph_height = vid->height;
+ 
+     const uint8_t *src = atlas->buffer + glyph->atlas_offset_x + glyph->atlas_offset_y * atlas->width;
+ 
+

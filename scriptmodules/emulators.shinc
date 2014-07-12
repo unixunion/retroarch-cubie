@@ -44,6 +44,7 @@ _EOF_
 function sources_retroarch() {
     printMsg "Getting sources of RetroArch"
     gitPullOrClone "$rootdir/emulators/RetroArch" git://github.com/libretro/RetroArch.git
+    #gitPullOrClone "$rootdir/emulators/RetroArch" https://github.com/AreaScout/RetroArch.git #git://github.com/libretro/RetroArch.git
 }
 
 function build_retroarch() {
@@ -722,7 +723,7 @@ function configure_mupen64rpi() {
 }
 
 function depen_snes9x() {
-    apt-get update && apt-get install -y libsdl-dev libboost-thread-dev
+    apt-get update && apt-get install -y libsdl-dev libboost-thread-dev libsdl-ttf2.0-dev
 }
 
 function sources_snes9x() {
