@@ -34,7 +34,7 @@ function depen_build() {
 function depen_retroarch() {
     printMsg "Getting depencies of udev/eudev"
     #apt-get install -y libudev-dev libxkbcommon-dev libegl-dev libegl1-mesa-dev libegl1-mesa-dev libudev-dev libgl1-mesa-dev libasound2-dev
-    apt-get install -y libudev-dev libasound2-dev
+    apt-get install -y libudev-dev libasound2-dev g++
     cat > "/etc/udev/rules.d/99-evdev.rules" << _EOF_
 KERNEL=="event*", NAME="input/%k", MODE="666"
 _EOF_
