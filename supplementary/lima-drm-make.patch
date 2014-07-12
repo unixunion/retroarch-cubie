@@ -1,0 +1,11 @@
+--- Makefile.bak	2014-07-12 18:40:13.865386031 +0000
++++ Makefile	2014-07-12 18:41:05.185359235 +0000
+@@ -2,7 +2,7 @@
+ 
+ include $(TOP)Makefile.inc
+ 
+-CFLAGS += -I$(TOP)include -I/usr/include/libdrm -I/usr/include/exynos -fPIC
++CFLAGS += -I$(TOP)include -I/usr/include/libdrm -I/usr/include/exynos -I/usr/local/include/libdrm -I/usr/local/include/exynos/ -fPIC
+ ASFLAGS += -mfpu=neon -mfloat-abi=hard -fPIC
+ 
+ all: liblimare.so

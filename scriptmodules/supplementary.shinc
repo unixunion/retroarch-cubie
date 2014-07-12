@@ -81,6 +81,22 @@ function build_drm() {
         popd
 }
 
+# 23 lima drm
+function sources_lima_drm() {
+        printMsg "lima drm mod"
+	gitPullOrClone "$rootdir/supplementary/lima-drm" "https://github.com/tobiasjakobi/lima-drm.git" || return 1
+	pushd "$rootdir/supplementary/lima-drm" || return 1
+        patch -p1 $rootdir/supplementary/lima-drm/limare/lib/Makefile <$scriptdir/supplementary/lima-drm-make.patch
+        patch -p1 $rootdir/supplementary/lima-drm/limare/Makefile <$scriptdir/supplementary/lima-drm.patch
+        popd
+}
+
+function build_lima_drm() {
+	pushd "$rootdir/supplementary/lima-drm" || return 1
+	make
+        make install
+        popd
+}
 
 
 # 300, APT Update
@@ -172,6 +188,7 @@ function build_EmulationStation() {
 
 	# EmulationStation
 	pushd "$rootdir/supplementary/EmulationStation" || return 1
+	cmake -D CMAKE_CXX_COMPILER=g++-4.7 . || return 1
 	cmake -D CMAKE_CXX_COMPILER=g++-4.7 . || return 1
 	make || return 1
 	popd
