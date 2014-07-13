@@ -98,6 +98,12 @@ function build_lima_drm() {
         popd
 }
 
+#24 libgbm
+# https://github.com/robclark/libgbm.git
+
+#25 
+# depends: bison, flex, x11proto-gl-dev
+# http://cgit.freedesktop.org/mesa/mesa/snapshot/mesa-10.2.3.tar.gz
 
 # 300, APT Update
 
