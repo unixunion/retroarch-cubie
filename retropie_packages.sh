@@ -150,7 +150,7 @@ function rps_checkNeededPackages() {
     if [[ -z $(type -P git) || -z $(type -P dialog) ]]; then
         echo "Did not find needed packages 'git' and/or 'dialog'. I am trying to install these now."
         apt-get update
-        apt-get install -y git dialog
+        apt-get install -y git dialog fbset
         if [ $? == '0' ]; then
             echo "Successfully installed 'git' and/or 'dialog'."
         else

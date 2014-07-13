@@ -34,7 +34,7 @@ function depen_build() {
 function depen_retroarch() {
     printMsg "Getting depencies of udev/eudev"
     #apt-get install -y libudev-dev libxkbcommon-dev libegl-dev libegl1-mesa-dev libegl1-mesa-dev libudev-dev libgl1-mesa-dev libasound2-dev
-    apt-get install -y libudev-dev libasound2-dev g++ libgl1-mesa-dev
+    apt-get install -y libudev-dev libasound2-dev g++ libgl1-mesa-dev libsdl1.2-dev
     cat > "/etc/udev/rules.d/99-evdev.rules" << _EOF_
 KERNEL=="event*", NAME="input/%k", MODE="666"
 _EOF_
@@ -44,13 +44,13 @@ _EOF_
 function sources_retroarch() {
     printMsg "Getting sources of RetroArch"
     gitPullOrClone "$rootdir/emulators/RetroArch" git://github.com/libretro/RetroArch.git
-    #gitPullOrClone "$rootdir/emulators/RetroArch" https://github.com/AreaScout/RetroArch.git #git://github.com/libretro/RetroArch.git
 }
 
 function build_retroarch() {
     printMsg "Building RetroArch"
     pushd "$rootdir/emulators/RetroArch"
-    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard --enable-alsa --enable-lima
+    git apply $scriptdir/supplementary/retroarch-fbdev.patch 
+    ./configure --prefix="$rootdir/emulators/RetroArch/installdir" --disable-x11 --disable-oss --disable-pulse --enable-floathard --enable-alsa --enable-lima --enable-mali_fbdev
     #make clean
     make
     popd
