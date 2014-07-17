@@ -1,0 +1,24 @@
+diff --git a/include/GLES/gl.h b/include/GLES/gl.h
+index 858f394..a6bb591 100644
+--- a/include/GLES/gl.h
++++ b/include/GLES/gl.h
+@@ -29,6 +29,7 @@ typedef float  GLfloat;
+ typedef float  GLclampf;
+ typedef signed int  GLfixed;
+ typedef signed int  GLclampx;
++typedef char GLchar;
+ 
+ typedef int * GLintptr;
+ typedef int *  GLsizeiptr;
+diff --git a/include/GLES2/gl2.h b/include/GLES2/gl2.h
+index 59e376c..88a19b8 100644
+--- a/include/GLES2/gl2.h
++++ b/include/GLES2/gl2.h
+@@ -32,6 +32,7 @@ typedef unsigned int     GLuint;
+ typedef khronos_float_t  GLfloat;
+ typedef khronos_float_t  GLclampf;
+ typedef khronos_int32_t  GLfixed;
++typedef char GLchar;
+ 
+ /* GL types for handling large vertex buffer objects */
+ typedef khronos_intptr_t GLintptr;

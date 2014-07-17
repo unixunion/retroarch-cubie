@@ -59,6 +59,7 @@ function build_mali400() {
 	pushd "$rootdir/supplementary/sunxi-mali" || return 1
         git submodule init
         git submodule update
+        patch -p1 <  $scriptdir/supplementary/sunxi-mali.patch
 	make config ABI=armhf EGL_TYPE=framebuffer|| return 1
         make install || return 1
 	popd
@@ -75,7 +76,7 @@ function sources_drm() {
 
 function build_drm() {
 	pushd "$rootdir/supplementary/drm" || return 1
-        ./autogen.sh --enable-exynos-experimental-api
+        ./autogen.sh #--enable-exynos-experimental-api
         make
         make install
         popd
@@ -84,10 +85,10 @@ function build_drm() {
 # 23 lima drm
 function sources_lima_drm() {
         printMsg "lima drm mod"
-	gitPullOrClone "$rootdir/supplementary/lima-drm" "https://github.com/tobiasjakobi/lima-drm.git" || return 1
+	gitPullOrClone "$rootdir/supplementary/lima-drm" "https://git.gitorious.com/lima/lima.git" || return 1
 	pushd "$rootdir/supplementary/lima-drm" || return 1
-        patch -p1 $rootdir/supplementary/lima-drm/limare/lib/Makefile <$scriptdir/supplementary/lima-drm-make.patch
-        patch -p1 $rootdir/supplementary/lima-drm/limare/Makefile <$scriptdir/supplementary/lima-drm.patch
+        #patch -p1 $rootdir/supplementary/lima-drm/limare/lib/Makefile <$scriptdir/supplementary/lima-drm-make.patch
+        #patch -p1 $rootdir/supplementary/lima-drm/limare/Makefile <$scriptdir/supplementary/lima-drm.patch
         popd
 }
 
@@ -98,12 +99,44 @@ function build_lima_drm() {
         popd
 }
 
-#24 libgbm
-# https://github.com/robclark/libgbm.git
+# 24 libgbm
+function sources_libgbm() {
+        printMsg "libgbm"
+	gitPullOrClone "$rootdir/supplementary/libgbm" "https://git.ti.com/glsdk/libgbm.git" || return 1
+	pushd "$rootdir/supplementary/libgbm" || return 1
+        popd
+}
+
+function build_libgbm() {
+	pushd "$rootdir/supplementary/libgbm" || return 1
+        ./autogen.sh || return 1
+	make || return 1
+        make install || return 1
+        popd
+}
+
+# 25 SDL 1.2
+function sources_sdl1() {
+        printMsg "SDL 1.2"
+	apt-get -y install libdbus-1-dev
+        wget https://www.libsdl.org/release/SDL-1.2.15.tar.gz
+        mkdir -p "$rootdir/supplementary/"
+        tar xvfz SDL-1.2.15.tar.gz -C "$rootdir/supplementary/"
+        rm SDL-1.2.15.tar.gz || return 1
+}
+
+function build_sdl1() {
+        pushd "$rootdir/supplementary/SDL-1.2.15" || return 1
+        ./configure /configure --enable-video-fbcon  --enable-video-directfb || return 1
+        make || return 1
+        make install || return 1
+        popd
+}
+
+
 
 #25 
-# depends: bison, flex, x11proto-gl-dev
-# http://cgit.freedesktop.org/mesa/mesa/snapshot/mesa-10.2.3.tar.gz
+#  libopenvg1-mesa-dev
 
 # 300, APT Update
 
@@ -140,7 +173,7 @@ _EOF_
 
 function depen_sdl() {
     printMsg "Getting depencies of sdl"
-    apt-get install -y libudev-dev libasound2-dev libdbus-1-dev libraspberrypi0 libraspberrypi-bin libraspberrypi-dev libdbus-1-dev
+    apt-get install -y libudev-dev libasound2-dev libdbus-1-dev
 }
 
 function sources_sdl() {
@@ -159,6 +192,7 @@ function sources_sdl() {
 function build_sdl() {
     pushd "$rootdir/supplementary/SDL2-2.0.1" || return 1
     patch -p1 src/video/SDL_video.c <$scriptdir/supplementary/SDL.patch 
+    # ./configure --enable-dbus  --enable-video-directfb
     ./configure || return 1
     make || return 1
     popd || return 1

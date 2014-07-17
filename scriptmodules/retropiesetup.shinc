@@ -136,6 +136,8 @@ function rps_main_options()
              21  "Mali Framebuffer EGL Driver    " ON \
              22  "Direct Rendering (exynos)      " ON \
              23  "lima DRM                       " ON \
+             24  "libgbm                         " ON \
+             25  "SDL 1.2                        " ON \
              302 "SDL 2.0.1                      " ON \
              100 "RetroArch                      " ON \
              101 "AdvMame                        " OFF \
@@ -207,6 +209,8 @@ function rps_main_options()
                  21) source $scriptdir/retropie_packages.sh  21 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                  22) source $scriptdir/retropie_packages.sh  22 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                  23) source $scriptdir/retropie_packages.sh  23 2>&1 | tee >(gzip --stdout >$logfilename) ;;
+                 24) source $scriptdir/retropie_packages.sh  24 2>&1 | tee >(gzip --stdout >$logfilename) ;;
+                 25) source $scriptdir/retropie_packages.sh  25 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 100) source $scriptdir/retropie_packages.sh 100 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 101) source $scriptdir/retropie_packages.sh 101 2>&1 | tee >(gzip --stdout >$logfilename) ;;
                 102) source $scriptdir/retropie_packages.sh 102 2>&1 | tee >(gzip --stdout >$logfilename) ;;
