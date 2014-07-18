@@ -13,8 +13,10 @@
 starttype=$1
 shift
 
+echo 0 > /sys/class/vtconsole/vtcon1/bind 
 # set cpu governor profile performance 
 echo "performance" | sudo tee /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
 
 if [[ $starttype -eq 1 && ! -z `tvservice -m CEA | egrep -w "mode 1"` ]] || [[ $starttype -eq 3 ]]; then
 	tvservice -e "CEA 1"
@@ -62,5 +64,5 @@ fi
 
 # set cpu governor profile ondemand 
 echo "ondemand" | sudo tee /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-
+echo 1 > /sys/class/vtconsole/vtcon1/bind 
 exit 0
