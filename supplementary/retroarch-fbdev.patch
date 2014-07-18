@@ -1,35 +1,30 @@
-diff --git a/Makefile b/Makefile
-index 95a2307..6923a30 100644
---- a/Makefile
-+++ b/Makefile
-@@ -66,7 +66,7 @@ RETROLAUNCH_OBJ = tools/retrolaunch/main.o \
- HEADERS = $(wildcard */*/*.h) $(wildcard */*.h) $(wildcard *.h)
- 
- ifeq ($(findstring Haiku,$(OS)),)
--   LIBS = -lm
-+   LIBS = -lm -lMali
- endif
- 
- DEFINES = -DHAVE_CONFIG_H -DHAVE_SCREENSHOTS -DRARCH_INTERNAL -DHAVE_CC_RESAMPLER -DHAVE_OVERLAY
 diff --git a/gfx/context/mali_fbdev_ctx.c b/gfx/context/mali_fbdev_ctx.c
-index 841948f..2cb7f76 100644
+index 841948f..5f8dc3f 100644
 --- a/gfx/context/mali_fbdev_ctx.c
 +++ b/gfx/context/mali_fbdev_ctx.c
-@@ -25,6 +25,7 @@ static EGLContext g_egl_ctx;
- static EGLSurface g_egl_surf;
- static EGLDisplay g_egl_dpy;
- static EGLConfig g_config;
-+struct mali_native_window native_window[1];
- static bool g_resize;
- static unsigned g_width, g_height;
- 
-@@ -199,8 +200,7 @@ static bool gfx_ctx_set_video_mode(void *data,
+@@ -199,6 +199,12 @@ static bool gfx_ctx_set_video_mode(void *data,
        EGL_NONE
     };
  
--   struct fbdev_window window = { width, height };
--   if ((g_egl_surf = eglCreateWindowSurface(g_egl_dpy, g_config, &window, 0)) == EGL_NO_SURFACE)
-+   if ((g_egl_surf = eglCreateWindowSurface(g_egl_dpy, g_config, native_window, 0)) == EGL_NO_SURFACE)
++   typedef struct fbdev_window
++	{
++	unsigned short width;
++	unsigned short height;
++	} fbdev_window;
++
+    struct fbdev_window window = { width, height };
+    if ((g_egl_surf = eglCreateWindowSurface(g_egl_dpy, g_config, &window, 0)) == EGL_NO_SURFACE)
     {
-       RARCH_ERR("eglCreateWindowSurface failed.\n");
-       goto error;
+diff --git a/qb/config.libs.sh b/qb/config.libs.sh
+index 8ee553c..16ab286 100644
+--- a/qb/config.libs.sh
++++ b/qb/config.libs.sh
+@@ -191,7 +191,7 @@ fi
+ check_lib DYNAMIC "$DYLIB" dlopen
+ 
+ if [ "$HAVE_KMS" != "no" ]; then
+-   check_pkgconf GBM gbm 9.0
++   check_pkgconf GBM gbm
+    check_pkgconf DRM libdrm
+    if [ "$HAVE_GBM" = "yes" ] && [ "$HAVE_DRM" = "yes" ] && [ "$HAVE_EGL" = "yes" ]; then
+       HAVE_KMS=yes
