@@ -134,8 +134,8 @@ function rps_main_options()
     options=(10  "Build Environment              " ON \
              20  "libUMP                         " ON \
              21  "Mali Framebuffer EGL Driver    " ON \
-             22  "Direct Rendering (exynos)      " ON \
-             23  "lima DRM                       " ON \
+             22  "Direct Rendering               " ON \
+             23  "lima DRM                       " OFF \
              24  "libgbm                         " ON \
              25  "SDL 1.2                        " ON \
              302 "SDL 2.0.1                      " ON \
